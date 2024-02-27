@@ -5,6 +5,23 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Authors>NLabs</Authors>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>Result.jpg</PackageIcon>
+    <Title>Result Package</Title>
+    <PackageProjectUrl></PackageProjectUrl>
+    <Description>Result Package</Description>
+    <RepositoryUrl>https://github.com/NlabsNugetPackages/ResultPackage.git</RepositoryUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Result.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
