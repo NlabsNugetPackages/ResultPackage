@@ -11,6 +11,12 @@
     <PackageProjectUrl></PackageProjectUrl>
     <Description>Result Package</Description>
     <RepositoryUrl>https://github.com/NlabsNugetPackages/ResultPackage.git</RepositoryUrl>
+    <PackAsTool>True</PackAsTool>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>False</Optimize>
   </PropertyGroup>
 
   <ItemGroup>

@@ -52,6 +52,15 @@ Result<string> result = (400, new List<string> { "Error 1", "Error 2" });
 ```csharp
 Result<string> result = (400, "Single error message");
 ```
+- **One error message return 500 status code**
+```csharp
+Result<string> result = Result<string>.Failure("Is fail!"); //return 500 status code
+``` 
+
+- **Multiple error messages return 500 status code**
+```csharp
+Result<string> result = Result<string>.Failure(new List<string>() {"Is fail!","Is not unique!"}); //return 500 status code
+``` 
 
 ## Contributing
 We welcome contributions! Feel free to open an issue or submit a pull request on our GitHub repository for any suggestions or improvements.
