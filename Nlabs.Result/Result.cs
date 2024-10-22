@@ -1,10 +1,9 @@
-﻿using System.Net;
-
-namespace Nlabs.Result;
+﻿namespace Nlabs.Result;
 public sealed class Result<T>
 {
     public T? Data { get; set; }
     public List<string>? ErrorMessages { get; set; }
+    public Dictionary<string, List<string>>? ErrorDetails { get; set; }
     public bool IsSuccessful { get; set; } = true;
     public int StatusCode { get; set; } = 200;
 
@@ -27,6 +26,13 @@ public sealed class Result<T>
         ErrorMessages = new() { errorMessage };
     }
 
+    public Result(int statusCode, Dictionary<string, List<string>> errorDetails)
+    {
+        IsSuccessful = false;
+        StatusCode = statusCode;
+        ErrorDetails = errorDetails;
+    }
+
     public static implicit operator Result<T>(T data)
     {
         return new(data);
@@ -42,6 +48,10 @@ public sealed class Result<T>
         return new(parameters.statusCode, parameters.errorMessage);
     }
 
+    public static implicit operator Result<T>((int statusCode, Dictionary<string, List<string>> errorDetails) parameters)
+    {
+        return new(parameters.statusCode, parameters.errorDetails);
+    }
 
     public static Result<T> Succeed(T data)
     {
@@ -66,5 +76,9 @@ public sealed class Result<T>
     public static Result<T> Failure(List<string> errorMessages)
     {
         return new(500, errorMessages);
+    }
+    public static Result<T> Failure(int statusCode, Dictionary<string, List<string>> errorDetails)
+    {
+        return new(statusCode, errorDetails);
     }
 }
