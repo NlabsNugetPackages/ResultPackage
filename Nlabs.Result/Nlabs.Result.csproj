@@ -11,9 +11,9 @@
     <PackageProjectUrl></PackageProjectUrl>
     <Description>Result Package</Description>
     <RepositoryUrl>https://github.com/NlabsNugetPackages/ResultPackage.git</RepositoryUrl>
-    <PackAsTool>True</PackAsTool>
+    <PackAsTool>False</PackAsTool>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>8.0.2</Version>
+    <Version>8.0.3</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
