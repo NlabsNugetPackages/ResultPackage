@@ -18,7 +18,6 @@ public sealed class Result<T>
         StatusCode = statusCode;
         ErrorMessages = errorMessages;
     }
-
     public Result(int statusCode, string errorMessage)
     {
         IsSuccessful = false;
@@ -33,52 +32,23 @@ public sealed class Result<T>
         ErrorDetails = errorDetails;
     }
 
-    public static implicit operator Result<T>(T data)
-    {
-        return new(data);
-    }
+    public static implicit operator Result<T>(T data) => new(data);
 
-    public static implicit operator Result<T>((int statusCode, List<string> errorMessages) parameters)
-    {
-        return new(parameters.statusCode, parameters.errorMessages);
-    }
+    public static implicit operator Result<T>((int statusCode, List<string> errorMessages) error) => new(error.statusCode, error.errorMessages);
 
-    public static implicit operator Result<T>((int statusCode, string errorMessage) parameters)
-    {
-        return new(parameters.statusCode, parameters.errorMessage);
-    }
+    public static implicit operator Result<T>((int statusCode, string errorMessage) error) => new(error.statusCode, error.errorMessage);
 
-    public static implicit operator Result<T>((int statusCode, Dictionary<string, List<string>> errorDetails) parameters)
-    {
-        return new(parameters.statusCode, parameters.errorDetails);
-    }
+    public static implicit operator Result<T>((int statusCode, Dictionary<string, List<string>> errorDetails) error) => new(error.statusCode, error.errorDetails);
 
-    public static Result<T> Succeed(T data)
-    {
-        return new(data);
-    }
+    public static Result<T> Success(T data) => new(data);
 
-    public static Result<T> Failure(int statusCode, List<string> errorMessages)
-    {
-        return new(statusCode, errorMessages);
-    }
+    public static Result<T> Fail(int statusCode, List<string> errorMessages) => new(statusCode, errorMessages);
 
-    public static Result<T> Failure(int statusCode, string errorMessage)
-    {
-        return new(statusCode, errorMessage);
-    }
+    public static Result<T> Fail(int statusCode, string errorMessage) => new(statusCode, errorMessage);
 
-    public static Result<T> Failure(string errorMessage)
-    {
-        return new(500, errorMessage);
-    }
+    public static Result<T> Fail(string errorMessage) => new(400, errorMessage);
 
-    public static Result<T> Failure(List<string> errorMessages)
-    {
-        return new(500, errorMessages);
-    }
-    public static Result<T> Failure(int statusCode, Dictionary<string, List<string>> errorDetails)
-    {
-        return new(statusCode, errorDetails);
-    }
+    public static Result<T> Fail(List<string> errorMessages) => new(400, errorMessages);
+
+    public static Result<T> Fail(int statusCode, Dictionary<string, List<string>> errorDetails) => new(statusCode, errorDetails);
 }
